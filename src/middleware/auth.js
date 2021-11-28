@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 module.exports = (req, res, next) => {
     //Autorizacion por header
     const authHeader = req.get('Authorization');
-
     if(!authHeader){
         const error = new Error('No aunteticado, no hay JWT');
         error.statusCode = 401;
@@ -17,7 +16,6 @@ module.exports = (req, res, next) => {
         revisarToken = jwt.verify(token, process.env.AUTH_KEY)
     } catch (error) {
         error.statusCode = 500;
-/*         res.send({message: 'token expirado', error}) */
         throw error;
     }
     
