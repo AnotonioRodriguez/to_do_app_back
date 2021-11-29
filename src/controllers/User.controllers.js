@@ -125,7 +125,7 @@ userCtrl.editUser = async (req, res) => {
                 },
                 process.env.AUTH_KEY
             );
-            res.status(200).json({ token });
+            res.json({ token });
         } else {
             res.status(500).json({ message: "Este usuario no existe" });
         }

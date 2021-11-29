@@ -1,10 +1,12 @@
 const tasksCtrl = {};
 const tasksModel = require("../models/Tasks");
+const moment = require('moment')
 
 tasksCtrl.createTask = async (req, res) => {
     try {
         const newTask = new tasksModel(req.body);
         newTask.id_user = req.params.idUser;
+        newTask.creation_date = moment().format();
         await newTask.save();
         res.status(200).json({ message: "Tarea creada con exito" });
     } catch (error) {
@@ -28,7 +30,7 @@ tasksCtrl.getTasks = async (req, res) => {
 tasksCtrl.updateTask = async (req, res) => {
     try {
         const updateTask = req.body;
-        await tasksModel.findByIdAndUpdate(req.params.idTask, updateTask);
+        await tasksModel.findByIdAndUpdate( req.params.idTask, updateTask);
         res.status(200).json({ message: "Tarea editada con exito" });
     } catch (error) {
         res.status(500).json({ message: error });
