@@ -7,12 +7,17 @@ const tasksSchema = new Schema(
         expiration_date: String,
         expiration_hour: String,
         description: String,
-        complete: String,
-        creation_date: String
+        complete: Boolean,
+        creation_date: String,
+        id_user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            require: true
+        }
     },
     {
         timestamps: true,
     }
 );
 
-module.exports = model("tasks", tasksSchema);
+module.exports = model("Tasks", tasksSchema);

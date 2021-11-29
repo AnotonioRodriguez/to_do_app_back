@@ -17,11 +17,11 @@ const userSchema = new Schema(
       unique: true
     },
     password: String,
-    policies: Boolean,
+    acceptPolicies: Boolean,
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = model("user", userSchema);
+module.exports = model("User", userSchema);
